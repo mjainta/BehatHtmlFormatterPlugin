@@ -439,10 +439,12 @@ class Behat2Renderer implements RendererInterface
             }
         }
 
-        $output = $step->getOutput();
-        if (!empty($output)) {
-            $print .= '
+        if ($obj->getPrintOutputs() === true) {
+            $output = $step->getOutput();
+            if (!empty($output)) {
+                $print .= '
                         <pre class="backtrace">'.$output.'</pre>';
+            }
         }
 
         $print .= '

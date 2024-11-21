@@ -365,6 +365,18 @@ class FeatureContext implements Context, SnippetAcceptingContext
         PHPUnit_Framework_Assert::assertContains($string->getRaw(), file_get_contents($index));
     }
 
+    /**
+     * @Given report file should not contain:
+     *
+     * @param PyStringNode $string
+     */
+    public function reportFileShouldNotContain(PyStringNode $string)
+    {
+        $index = $this->reportDir . 'Index.html';
+
+        PHPUnit_Framework_Assert::assertNotContains($string->getRaw(), file_get_contents($index));
+    }
+
     private function getExitCode()
     {
         return $this->process->getExitCode();
