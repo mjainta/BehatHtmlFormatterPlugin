@@ -94,14 +94,28 @@
     And report file should exists
     And report file should contain:
       """
-      2 features failed of 3
+                  <div class="chart-summary title">
+                      3 Features:
+                  </div>
+                  <div class="chart-summary failed">2 failed</div>
       """
-    And report file should contain:
+   And report file should contain:
       """
-      5 scenarios failed of 7
+                  <div class="chart-summary title">
+                      7
+                      Scenarios:
+                  </div>
+                  <div class="chart-summary failed">5 failed</div>
+                  <div class="chart-summary undefined">0 undefined</div>
+                  <div class="chart-summary skipped">0 skipped</div>
       """
-    And report file should contain:
+   And report file should contain:
       """
-      2 steps failed of 6
+                  <div class="chart-summary title">
+                      6
+                      Steps:
+                  </div>
+                  <div class="chart-summary failed">2 failed</div>
+                  <div class="chart-summary undefined">0 undefined</div>
+                  <div class="chart-summary skipped">0 skipped</div>
       """
-
