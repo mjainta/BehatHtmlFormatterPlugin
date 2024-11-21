@@ -1,4 +1,4 @@
-  Feature: Twig Renderer
+  Feature: Behat2 Renderer
 
   Background:
     Given a file named "behat.yml" with:
@@ -10,7 +10,7 @@
         extensions:
             emuse\BehatHTMLFormatter\BehatHTMLFormatterExtension:
                 name: html
-                renderer: Twig
+                renderer: Behat2
                 file_name: Index
                 print_args: true
                 print_outp: true
@@ -32,12 +32,13 @@
         {
             public static function getAcceptedSnippetType() { return 'regex'; }
             /** @When /^I give a passing step$/ */
-            public function passingStep() { 
+            public function passingStep() {
+              print_r("I am a passing step");
               PHPUnit_Framework_Assert::assertEquals(2, 2);
             }
             /** @When /^I give a failing step$/ */
-            public function failingStep() { 
-              PHPUnit_Framework_Assert::assertEquals(1, 2);
+            public function failingStep() {
+              PHPUnit_Framework_Assert::assertEquals(1, 2, 'I am a failing step');
             }
             /** * @When /^I give a pending step$/ */
             public function somethingNotDoneYet() {
@@ -91,17 +92,24 @@
 
 
       """
-    And report file for Twig should exists
+    And report file for Behat2 should exists
     And report file should contain:
       """
-      2 features failed of 3
+                      <p class="features">
+                          3 features ( <strong class="passed">1 success</strong> <strong class="failed">2 fail</strong> )
+                      </p>
+                      <p class="scenarios">
+                          7 scenarios ( <strong class="passed">2 success</strong> <strong class="failed">5 fail</strong> )
+                      </p>
+                      <p class="steps">
+                          9 steps ( <strong class="passed">4 success</strong> <strong class="pending">3 pending</strong> <strong class="failed">2 fail</strong> )
+                      </p>
       """
     And report file should contain:
       """
-      5 scenarios failed of 7
+      I am a passing step
       """
     And report file should contain:
       """
-      2 steps failed of 6
+      I am a failing step
       """
-

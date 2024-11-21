@@ -335,15 +335,18 @@ class FeatureContext implements Context, SnippetAcceptingContext
 
 
     /**
-     * @Given report file should exists
+     * @Given /report file for (Twig|Behat2) should exists/
      */
-    public function reportFileShouldExists()
+    public function reportFileShouldExists(string $reportType)
     {
-        $files = array(
-            $this->reportDir . 'Index.html',
-            $this->reportDir . 'assets/Twig/css/style.css',
-            $this->reportDir . 'assets/Twig/css/style.less',
-        );
+        $files = [];
+        if ($reportType === 'Behat2') {
+            $files[] = $this->reportDir . 'Index.html';
+        } elseif ($reportType === 'Twig') {
+            $files[] = $this->reportDir . 'Index.html';
+            $files[] = $this->reportDir . 'assets/Twig/css/style.css';
+            $files[] = $this->reportDir . 'assets/Twig/css/style.less';
+        }
 
         foreach ($files as $file) {
             PHPUnit_Framework_Assert::assertFileExists($file);

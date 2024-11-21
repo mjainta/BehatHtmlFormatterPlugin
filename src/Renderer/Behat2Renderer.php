@@ -438,6 +438,13 @@ class Behat2Renderer implements RendererInterface
                 $print .= '<a href="'.$scenario->getRelativeScreenshotPath().'">Screenshot</a>';
             }
         }
+
+        $output = $step->getOutput();
+        if (!empty($output)) {
+            $print .= '
+                        <pre class="backtrace">'.$output.'</pre>';
+        }
+
         $print .= '
                     </li>';
 
