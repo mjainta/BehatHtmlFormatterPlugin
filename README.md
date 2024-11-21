@@ -181,6 +181,22 @@ Note that the currentScenario variable will need to be at class level and genera
 
 When you need additional support or you discover something *strange*, feel free to [Create a new issue](https://github.com/dutchiexl/BehatHtmlFormatterPlugin/issues/new).
 
+## Contributing
+
+### Setup local development environment
+
+```bash
+docker build --tag behat-html-formatter-test:latest .
+```
+
+### Running tests
+
+```bash
+docker run -it --rm --volume ./:/usr/src/behat-html-formatter behat-html-formatter-test:latest bash
+cd /usr/src/behat-html-formatter
+./vendor/bin/behat .
+```
+
 ## License and Authors
 
 Authors: https://github.com/dutchiexl/BehatHtmlFormatterPlugin/contributors
